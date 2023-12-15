@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Repositories;
+package repository;
 
-import enteties.Student;
+import entety.Student;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -83,5 +83,66 @@ public class StudentData {
     
       return student;
  }
+   
+
+        
+    public void joinCourse(Student student, String courseName){
+         try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("INSERT INTO student_course (student_name, course_id) "
+                    + "VALUES (?, (SELECT course_id FROM course WHERE course_name = ?))");
+                    pst.setString(1, student.getUsername());
+                    pst.setString(2,courseName );
+              
+                    pst.executeUpdate();      
+                    
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }      
+            
+    }
+    
+        
+    public void dropCourse(Student student, String courseName){
+         try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("DELETE FROM student_course WHERE student_name=? AND course_id="
+                    + " (SELECT course_id FROM course WHERE course_name = ?)");
+                    pst.setString(1, student.getUsername());
+                    pst.setString(2,courseName );
+              
+                    pst.executeUpdate();      
+                    
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }      
+            
+    }
+    
+    public boolean followsCourse (Student student,String courseName){
+     try {
+           Connection con=JDBConnection.getConnection();
+           PreparedStatement pst = con.prepareStatement( "SELECT * FROM student_course WHERE student_name=? AND course_id="
+                   + " (SELECT course_id FROM course WHERE course_name = ?) " );
+                   pst.setString(1, student.getUsername());
+                   pst.setString(2,courseName );
+                   ResultSet rs = pst.executeQuery();
+                   
+                if(rs.next()){
+         
+                     return true;
+                   }              
+       }
+       catch(Exception e){
+           e.printStackTrace();
+       }
+       
+       return false;
+ }  
+    
     
 }

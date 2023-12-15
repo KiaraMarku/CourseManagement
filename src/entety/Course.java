@@ -2,35 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package enteties;
+package entety;
 
-import enteties.Student;
-import java.time.LocalTime;
 import java.util.List;
 
 
 
-/**
- *
- * @author arual
- */
 public class Course {
-    
-    
-    public class CourseSchedule{
-        LocalTime startTime;
-        LocalTime endTime;
-        String meetingDay;
-        
-        
-    }
-    
+ 
     int id;
     String  name;
     String instructor;
     String location;
     int rating;
-    CourseSchedule schedule;
     List<String> reviews;
     List <Student> students;
     
@@ -39,12 +23,12 @@ public class Course {
     public Course() {
     }
 
-    public Course(int id, String name, String instructor, String location, CourseSchedule schedule) {
+    public Course(int id, String name, String instructor, String location) {
         this.id = id;
         this.name = name;
         this.instructor = instructor;
         this.location = location;
-        this.schedule=schedule;
+      
     }
 
     public int getId() {
@@ -63,10 +47,7 @@ public class Course {
         return location;
     }
 
-    public CourseSchedule getSchedule() {
-        return schedule;
-    }
-
+   
     public int getRating() {
         return rating;
     }

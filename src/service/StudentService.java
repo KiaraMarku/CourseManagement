@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package services;
+package service;
 
-import Repositories.StudentData;
-import enteties.Student;
+import repository.StudentData;
+import entety.Student;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class StudentService {
     
-    StudentData studentData=new Repositories.StudentData();
+    StudentData studentData=new repository.StudentData();
     
   
   public void register(String name,String major,String password){
@@ -72,4 +72,16 @@ public class StudentService {
                 else  JOptionPane.showMessageDialog(null, "Login unsuccesfull");
                 return student;
      }
+     
+     public void joinCourse(Student student, String coursename){
+         studentData.joinCourse(student, coursename);
+     }
+     
+      public void dropCourse(Student student, String coursename){
+         studentData.dropCourse(student, coursename);
+     }
+      
+      public boolean followsCourses(Student student, String coursename){
+          return studentData.followsCourse(student, coursename);
+      }
 }

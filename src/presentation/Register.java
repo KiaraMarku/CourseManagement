@@ -1,9 +1,9 @@
-package Jframe;
+package presentation;
 
 
 
 
-import services.StudentService;
+import service.StudentService;
 
 public class Register extends javax.swing.JFrame {
  //used to access the database
