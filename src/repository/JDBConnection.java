@@ -15,7 +15,7 @@ public class JDBConnection {
     {
         try {
 
-            con = DriverManager.getConnection("jdbc:mysql://localhost/university", "root","kiara2003");
+            con = DriverManager.getConnection("jdbc:mysql://localhost/university", "root","Suela2003!");
             System.out.println("Successs");
         }
 
