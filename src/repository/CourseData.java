@@ -12,8 +12,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
+import entety.CourseReview;
 
 
 /**
@@ -120,6 +121,73 @@ public class CourseData {
        }
          return studentCount;
     }
+    
+     public List getCourseReviews(String courseName){
+        List<CourseReview> courseReviews=new ArrayList<CourseReview>();
+         try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("select student_name,rating,feedback,date from student_course "
+                    + "where course_id = (select course_id from course where course_name=?) ORDER BY date");
+             pst.setString(1,courseName);
+             ResultSet resultSet = pst.executeQuery();
+          
+               while (resultSet.next()) {
+                    String studentName = resultSet.getString("student_name"); 
+                    int rating=resultSet.getInt("rating");
+                    String feedback=resultSet.getString("feedback");
+                    Date date=resultSet.getDate("date");
+                    if(date!=null){
+                        CourseReview review=new CourseReview(rating, studentName, feedback,date);
+                        courseReviews.add(review);  
+                    }
+                }
+               
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }
+         return  courseReviews;
+    }
+     
+      public double  getRating( String courseName){
+           double rating=0;      
+         try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("SELECT rating FROM course WHERE course_name=?");
+             pst.setString(1,courseName);
+             ResultSet resultSet = pst.executeQuery();
+          
+               if (resultSet.next()) {
+                     rating = resultSet.getDouble("rating");
+                   }
+               
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }
+         return rating;
+     } 
+     
+     
+     public void updateRating(String courseName,double rating){
+        
+         try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE course SET rating=? WHERE course_name=?");
+             pst.setDouble(1,rating);
+             pst.setString(2,courseName);
+                      
+             pst.executeUpdate();  
+               
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }
+          
+     }
   
   
 }
