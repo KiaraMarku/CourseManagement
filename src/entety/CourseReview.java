@@ -11,18 +11,17 @@ import java.util.Date;
  * @author arual
  */
 public class CourseReview {
-
-    int rating;
+     int rating;
     String studentName;
     String feedback;
     Date date;
 
-    public CourseReview(int rating, String studentName, String feedback, Date date) {
-        this.rating = rating;
-        this.studentName = studentName;
-        this.feedback = feedback;
-        this.date = date;
-    }
+        public CourseReview(int rating, String studentName, String feedback,Date date) {
+            this.rating = rating;
+            this.studentName = studentName;
+            this.feedback = feedback;
+            this.date=date;
+        }
 
     public int getRating() {
         return rating;
@@ -39,5 +38,5 @@ public class CourseReview {
     public Date getDate() {
         return date;
     }
-
+        
 }

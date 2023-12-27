@@ -142,7 +142,90 @@ public class StudentData {
        }
        
        return false;
- }  
+   }  
     
+    public void setRating(Student student,String courseName,int rating){
+          try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE   student_course SET rating=?,date=CURDATE() WHERE student_name=? AND course_id="
+                    + " (SELECT course_id FROM course WHERE course_name = ?)");
+                    pst.setInt(1,rating ); 
+                    pst.setString(2, student.getUsername());
+                    pst.setString(3,courseName );
+              
+                    pst.executeUpdate();      
+                    
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }     
+    }
+    
+    public void setFeedback(Student student,String courseName,String feedback){
+          try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE student_course SET feedback=?,date=CURDATE() WHERE student_name=? AND course_id="
+                    + " (SELECT course_id FROM course WHERE course_name = ?)");
+                    pst.setString(1,feedback); 
+                    pst.setString(2, student.getUsername());
+                    pst.setString(3,courseName );
+              
+                    pst.executeUpdate();      
+                    
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }     
+    }
+    
+    
+     public int getRating(Student student,String courseName){
+         int rating=0;
+          try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("SELECT rating FROM student_course WHERE student_name=? AND course_id="
+                    + " (SELECT course_id FROM course WHERE course_name = ?)");
+                   
+                    pst.setString(1, student.getUsername());
+                    pst.setString(2,courseName );
+              
+                     ResultSet resultSet = pst.executeQuery();
+          
+                    if (resultSet.next()) {
+                        rating= resultSet.getInt("rating");
+                    }
+              
+            } catch (Exception e) {
+
+             e.printStackTrace();
+
+            }
+          return rating;
+    }
+    
+    public String getFeedback(Student student,String courseName){
+        String feedback=null;
+       try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("SELECT feedback FROM student_course WHERE student_name=? AND course_id="
+                    + " (SELECT course_id FROM course WHERE course_name = ?)");
+                   
+                    pst.setString(1, student.getUsername());
+                    pst.setString(2,courseName );
+              
+                     ResultSet resultSet = pst.executeQuery();
+          
+                    if (resultSet.next()) {
+                        feedback   = resultSet.getString("feedback");
+                    }
+              
+            }  catch (Exception e) {
+
+                e.printStackTrace();
+               } 
+       return feedback;
+    }
     
 }

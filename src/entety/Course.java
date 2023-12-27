@@ -15,21 +15,20 @@ public class Course {
     String instructor;
     String location;
     int rating;
-    List<String> reviews;
-    List <Student> students;
+    List<CourseReview> reviews;
     
-    
-
     public Course() {
     }
-
-    public Course(int id, String name, String instructor, String location) {
+    
+    public Course(int id, String name, String instructor, String location, int rating) {
         this.id = id;
         this.name = name;
         this.instructor = instructor;
         this.location = location;
-      
+        this.rating = rating;
+       
     }
+    
 
     public int getId() {
         return id;
@@ -52,16 +51,4 @@ public class Course {
         return rating;
     }
 
-    public List<String> getReviews() {
-        return reviews;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-    
-    
-    
-    
-    
 }

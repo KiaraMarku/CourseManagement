@@ -67,12 +67,15 @@ public class BrowseCourses extends javax.swing.JFrame {
         topCourses = new javax.swing.JButton();
         courseCalendar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCourse = new rojeru_san.complementos.RSTableMetro();
         courseDetailsPanel = new javax.swing.JPanel();
         txtLecturer = new javax.swing.JLabel();
         txtSchedule = new javax.swing.JLabel();
         txtLocation = new javax.swing.JLabel();
         txtCourseName = new javax.swing.JLabel();
         txtNoStudents = new javax.swing.JLabel();
+        viewFeedbacsButton = new javax.swing.JButton();
         btnJoinDrop = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,14 +83,14 @@ public class BrowseCourses extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 153));
+        jPanel1.setBackground(new java.awt.Color(51, 0, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/menu-bar.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book-stack.png"))); // NOI18N
         jLabel1.setText(" Course Manager");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 320, 60));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 320, 70));
 
         Exit.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
         Exit.setForeground(new java.awt.Color(255, 255, 255));
@@ -108,11 +111,13 @@ public class BrowseCourses extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 90));
 
-        jPanel2.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(153, 193, 250));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
+        Home.setBackground(new java.awt.Color(255, 255, 255));
         Home.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        Home.setForeground(new java.awt.Color(102, 0, 153));
+        Home.setForeground(new java.awt.Color(51, 0, 153));
         Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home (1).png"))); // NOI18N
         Home.setText("Home");
         Home.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -122,8 +127,9 @@ public class BrowseCourses extends javax.swing.JFrame {
             }
         });
 
+        myCourses.setBackground(new java.awt.Color(255, 255, 255));
         myCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        myCourses.setForeground(new java.awt.Color(102, 0, 153));
+        myCourses.setForeground(new java.awt.Color(51, 0, 153));
         myCourses.setText("My Courses");
         myCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         myCourses.addActionListener(new java.awt.event.ActionListener() {
@@ -132,8 +138,9 @@ public class BrowseCourses extends javax.swing.JFrame {
             }
         });
 
+        browseCourses.setBackground(new java.awt.Color(255, 255, 255));
         browseCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        browseCourses.setForeground(new java.awt.Color(102, 0, 153));
+        browseCourses.setForeground(new java.awt.Color(51, 0, 153));
         browseCourses.setText("Browse Courses");
         browseCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         browseCourses.addActionListener(new java.awt.event.ActionListener() {
@@ -142,8 +149,9 @@ public class BrowseCourses extends javax.swing.JFrame {
             }
         });
 
+        topCourses.setBackground(new java.awt.Color(255, 255, 255));
         topCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        topCourses.setForeground(new java.awt.Color(102, 0, 153));
+        topCourses.setForeground(new java.awt.Color(51, 0, 153));
         topCourses.setText("Top Courses");
         topCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         topCourses.addActionListener(new java.awt.event.ActionListener() {
@@ -152,8 +160,9 @@ public class BrowseCourses extends javax.swing.JFrame {
             }
         });
 
+        courseCalendar.setBackground(new java.awt.Color(255, 255, 255));
         courseCalendar.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        courseCalendar.setForeground(new java.awt.Color(102, 0, 153));
+        courseCalendar.setForeground(new java.awt.Color(51, 0, 153));
         courseCalendar.setText(" Courses Calendar");
         courseCalendar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         courseCalendar.addActionListener(new java.awt.event.ActionListener() {
@@ -195,6 +204,39 @@ public class BrowseCourses extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        tblCourse.setBackground(new java.awt.Color(255, 255, 255));
+        tblCourse.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "All Courses"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblCourse.setAlignmentY(1.0F);
+        tblCourse.setColorBackgoundHead(new java.awt.Color(51, 0, 153));
+        tblCourse.setColorFilasBackgound2(new java.awt.Color(204, 204, 255));
+        tblCourse.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tblCourse.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tblCourse.setColorSelBackgound(new java.awt.Color(153, 153, 255));
+        tblCourse.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        tblCourse.setRowHeight(40);
+        tblCourse.setShowGrid(false);
+        tblCourse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCourseMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCourse);
+
         courseDetailsPanel.setBackground(new java.awt.Color(255, 255, 255));
         courseDetailsPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(40, 1, 1, 1, new java.awt.Color(204, 153, 255)));
 
@@ -223,6 +265,16 @@ public class BrowseCourses extends javax.swing.JFrame {
         txtNoStudents.setForeground(new java.awt.Color(51, 51, 51));
         txtNoStudents.setText("Number of students");
 
+        viewFeedbacsButton.setBackground(new java.awt.Color(204, 153, 255));
+        viewFeedbacsButton.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
+        viewFeedbacsButton.setForeground(new java.awt.Color(255, 255, 255));
+        viewFeedbacsButton.setText("View Feedbacks");
+        viewFeedbacsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewFeedbacsButtonActionPerformed(evt);
+            }
+        });
+
         btnJoinDrop.setBackground(new java.awt.Color(204, 153, 255));
         btnJoinDrop.setFont(new java.awt.Font("Bookman Old Style", 1, 14)); // NOI18N
         btnJoinDrop.setForeground(new java.awt.Color(255, 255, 255));
@@ -244,12 +296,14 @@ public class BrowseCourses extends javax.swing.JFrame {
                     .addComponent(txtSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtLecturer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNoStudents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txtNoStudents, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, courseDetailsPanelLayout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
-                .addComponent(btnJoinDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(113, 113, 113))
+                .addGap(41, 41, 41)
+                .addComponent(btnJoinDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewFeedbacsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
         courseDetailsPanelLayout.setVerticalGroup(
             courseDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,9 +317,11 @@ public class BrowseCourses extends javax.swing.JFrame {
                 .addComponent(txtSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtNoStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnJoinDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(courseDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewFeedbacsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnJoinDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -273,16 +329,22 @@ public class BrowseCourses extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(194, 194, 194)
+                .addGap(100, 100, 100)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(courseDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(467, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(192, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(courseDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(181, 181, 181))
+                .addGap(190, 190, 190))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 1110, 710));
@@ -297,14 +359,16 @@ public class BrowseCourses extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         Home home=new Home(user);
+        this.setVisible(false);
     }//GEN-LAST:event_HomeActionPerformed
 
     private void myCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCoursesActionPerformed
-        // TODO add your handling code here:
+        MyCourses myCourses=new MyCourses(user);
+        this.setVisible(false);
     }//GEN-LAST:event_myCoursesActionPerformed
 
     private void browseCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCoursesActionPerformed
-        BrowseCourses allCoursesPage=new BrowseCourses(user);
+        
     }//GEN-LAST:event_browseCoursesActionPerformed
 
     private void topCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topCoursesActionPerformed
@@ -324,10 +388,15 @@ public class BrowseCourses extends javax.swing.JFrame {
         courseDetailsPanel.setVisible(true);
     }//GEN-LAST:event_tblCourseMouseClicked
 
+    private void viewFeedbacsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFeedbacsButtonActionPerformed
+        Reviews feedbackpage=new Reviews(user,courseName);
+        this.setVisible(false);
+   
+    }//GEN-LAST:event_viewFeedbacsButtonActionPerformed
+
     private void btnJoinDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinDropActionPerformed
-        
-        if(studentService.followsCourses(user, courseName))
-            studentService.dropCourse(user, courseName);
+          if(studentService.followsCourses(user, courseName))
+        studentService.dropCourse(user, courseName);
         else studentService.joinCourse(user, courseName);
         showCourseDetails(courseName);
     }//GEN-LAST:event_btnJoinDropActionPerformed
@@ -390,7 +459,9 @@ public class BrowseCourses extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton myCourses;
+    private rojeru_san.complementos.RSTableMetro tblCourse;
     private javax.swing.JButton topCourses;
     private javax.swing.JLabel txtCourseName;
     private javax.swing.JLabel txtLecturer;
@@ -398,5 +469,6 @@ public class BrowseCourses extends javax.swing.JFrame {
     private javax.swing.JLabel txtNoStudents;
     private javax.swing.JLabel txtSchedule;
     private javax.swing.JLabel txtUsername;
+    private javax.swing.JButton viewFeedbacsButton;
     // End of variables declaration//GEN-END:variables
 }

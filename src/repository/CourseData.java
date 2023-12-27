@@ -5,8 +5,9 @@
 package repository;
 
 import entety.Course;
+import entety.CourseReview;
 import entety.CourseSchedule;
-import entety.Student;
+import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import entety.CourseReview;
+
 
 
 /**
@@ -35,8 +36,8 @@ public class CourseData {
             String courseName = resultSet.getString("course_name");
             String instructor = resultSet.getString("instructor");
             String location = resultSet.getString("location");
-          
-            Course course = new Course(courseID, courseName, instructor, location);
+            int rating=parseInt(resultSet.getString("rating"));
+            Course course = new Course(courseID, courseName, instructor, location,rating);
             courses.add(course);
          
         }
@@ -47,6 +48,35 @@ public class CourseData {
        }
           return courses;
     }
+  
+    public List<Course> getStudentCourses(String studentName){
+    List<Course> courses=new ArrayList<Course> ();
+          try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement( "select * from course where course.course_id in (select student_course.course_id from student_course where student_name=? )");
+             pst.setString(1, studentName);
+             ResultSet resultSet = pst.executeQuery();
+        while (resultSet.next()) {
+            int courseID = resultSet.getInt("course_id");
+            String courseName = resultSet.getString("course_name");
+            String instructor = resultSet.getString("instructor");
+            String location = resultSet.getString("location");
+            int rating=parseInt(resultSet.getString("rating"));
+           
+            Course course = new Course(courseID, courseName, instructor, location,rating);
+            courses.add(course);
+         
+        }
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }
+          return courses;
+    }
+
+  
+    
   
     public Course getCourse(String courseName){
           Course course=null;
@@ -61,8 +91,8 @@ public class CourseData {
             int courseID = resultSet.getInt("course_id");
             String instructor = resultSet.getString("instructor");
             String location = resultSet.getString("location");
-          
-             course = new Course(courseID, courseName, instructor, location);
+            int rating=parseInt(resultSet.getString("rating"));
+            course = new Course(courseID, courseName, instructor, location,rating);
           
         }
        } catch (Exception e) {
@@ -120,9 +150,9 @@ public class CourseData {
 
        }
          return studentCount;
-    }
+     }
     
-     public List getCourseReviews(String courseName){
+    public List getCourseReviews(String courseName){
         List<CourseReview> courseReviews=new ArrayList<CourseReview>();
          try {
            Connection con=JDBConnection.getConnection();
@@ -149,45 +179,7 @@ public class CourseData {
        }
          return  courseReviews;
     }
-     
-      public double  getRating( String courseName){
-           double rating=0;      
-         try {
-           Connection con=JDBConnection.getConnection();
-            PreparedStatement pst = con.prepareStatement("SELECT rating FROM course WHERE course_name=?");
-             pst.setString(1,courseName);
-             ResultSet resultSet = pst.executeQuery();
-          
-               if (resultSet.next()) {
-                     rating = resultSet.getDouble("rating");
-                   }
-               
-       } catch (Exception e) {
-           
-        e.printStackTrace();
-
-       }
-         return rating;
-     } 
-     
-     
-     public void updateRating(String courseName,double rating){
-        
-         try {
-           Connection con=JDBConnection.getConnection();
-            PreparedStatement pst = con.prepareStatement("UPDATE course SET rating=? WHERE course_name=?");
-             pst.setDouble(1,rating);
-             pst.setString(2,courseName);
-                      
-             pst.executeUpdate();  
-               
-       } catch (Exception e) {
-           
-        e.printStackTrace();
-
-       }
-          
-     }
   
+
   
 }

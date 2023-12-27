@@ -84,4 +84,23 @@ public class StudentService {
       public boolean followsCourses(Student student, String coursename){
           return studentData.followsCourse(student, coursename);
       }
+      
+      
+      public void rateCourse(Student student,String courseName,int rating){
+          studentData.setRating(student, courseName, rating);
+      }
+      
+       public void leaveFeeback(Student student,String courseName,String feedback){
+          studentData.setFeedback(student, courseName, feedback);
+      }
+       
+       public int getRating(Student student,String courseName){
+           return studentData.getRating(student, courseName);
+       }
+       
+        
+       public String getFeedback(Student student,String courseName){
+           return studentData.getFeedback(student, courseName);
+       }
+
 }
