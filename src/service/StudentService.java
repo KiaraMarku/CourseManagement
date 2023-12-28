@@ -7,6 +7,7 @@ package service;
 import repository.StudentData;
 import entety.Student;
 import javax.swing.JOptionPane;
+import repository.CourseData;
 
 /**
  *
@@ -14,7 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class StudentService {
     
-    StudentData studentData=new repository.StudentData();
+    StudentData studentData=new StudentData();
+    CourseData courseData=new CourseData();
     
   
   public void register(String name,String major,String password){
@@ -88,6 +90,8 @@ public class StudentService {
       
       public void rateCourse(Student student,String courseName,int rating){
           studentData.setRating(student, courseName, rating);
+          courseData.updateRating(courseName, rating);
+          
       }
       
        public void leaveFeeback(Student student,String courseName,String feedback){

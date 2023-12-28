@@ -6,29 +6,26 @@ package entety;
 
 import java.util.List;
 
-
-
 public class Course {
- 
+
     int id;
-    String  name;
+    String name;
     String instructor;
     String location;
     int rating;
     List<CourseReview> reviews;
-    
+
     public Course() {
     }
-    
+
     public Course(int id, String name, String instructor, String location, int rating) {
         this.id = id;
         this.name = name;
         this.instructor = instructor;
         this.location = location;
         this.rating = rating;
-       
+
     }
-    
 
     public int getId() {
         return id;
@@ -46,7 +43,6 @@ public class Course {
         return location;
     }
 
-   
     public int getRating() {
         return rating;
     }

@@ -1,22 +1,19 @@
 package presentation;
 
-
-
-
 import service.StudentService;
 
 public class Register extends javax.swing.JFrame {
- //used to access the database
- StudentService studentService;
-  
+    //used to access the database
+
+    StudentService studentService;
+
     public Register() {
         initComponents();
-         setLocationRelativeTo(null);
-         setVisible(true);
-         studentService=new StudentService();
+        setLocationRelativeTo(null);
+        setVisible(true);
+        studentService = new StudentService();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,7 +93,7 @@ public class Register extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(102, 0, 153));
+        jPanel3.setBackground(new java.awt.Color(153, 102, 255));
         jPanel3.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel6.setFont(new java.awt.Font("Calisto MT", 1, 20)); // NOI18N
@@ -295,66 +292,66 @@ public class Register extends javax.swing.JFrame {
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
         setVisible(false);
-        Login logInPage=new Login();
+        Login logInPage = new Login();
     }//GEN-LAST:event_logInButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        if(validateRegister()&& !userExists() )
-        register();
-        
+        if (validateRegister() && !userExists()) {
+            register();
+        }
+
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_ExitMouseClicked
- 
-   public  void register(){
-       String name,major,password,config;
-       name=txtName.getText();
-       major=txtMajor.getSelectedItem().toString();
-       password=txtPassword.getText();
-      
-      studentService.register(name, major, password);
-      reset();
-      
-   }
-   
-     public void reset(){
-                    txtName.setText("");
-                    txtMajor.setSelectedIndex(0);
-                    txtPassword.setText("");
-                    txtPasswordConfig.setText("");
-   }
-     
-     public boolean validateRegister(){
-         String name,major,password,config;
-       name=txtName.getText();
-       major=txtMajor.getSelectedItem().toString();
-       password=txtPassword.getText();
-       config=txtPasswordConfig.getText();
-       
-       return studentService.validateRegister(name, major, password, config);
-     }
-     
-     public boolean userExists(){
-         String name=txtName.getText();
-          
+
+    public void register() {
+        String name, major, password, config;
+        name = txtName.getText();
+        major = txtMajor.getSelectedItem().toString();
+        password = txtPassword.getText();
+
+        studentService.register(name, major, password);
+        reset();
+
+    }
+
+    public void reset() {
+        txtName.setText("");
+        txtMajor.setSelectedIndex(0);
+        txtPassword.setText("");
+        txtPasswordConfig.setText("");
+    }
+
+    public boolean validateRegister() {
+        String name, major, password, config;
+        name = txtName.getText();
+        major = txtMajor.getSelectedItem().toString();
+        password = txtPassword.getText();
+        config = txtPasswordConfig.getText();
+
+        return studentService.validateRegister(name, major, password, config);
+    }
+
+    public boolean userExists() {
+        String name = txtName.getText();
+
         return studentService.userExists(name);
-     }
-           
+    }
+
     public static void main(String args[]) {
-      
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Register().setVisible(true);
             }
-            
-        });
- }
 
-    
-   
+        });
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Exit;
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -379,4 +376,3 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPasswordConfig;
     // End of variables declaration//GEN-END:variables
 }
-

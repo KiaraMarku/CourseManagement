@@ -179,7 +179,65 @@ public class CourseData {
        }
          return  courseReviews;
     }
-  
+    
+    
+    public int  calculateRatingAverage( String courseName){
+           int averageRating=0;      
+         try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("SELECT AVG(rating) FROM student_course WHERE course_id = (SELECT course_id FROM course WHERE course_name=?)");
+             pst.setString(1,courseName);
+             ResultSet resultSet = pst.executeQuery();
+          
+               if (resultSet.next()) {
+                     averageRating = resultSet.getInt(1);
+                   }
+               
+       } catch (Exception e) {
+           
+        e.printStackTrace();
 
-  
+       }
+         return averageRating;
+     }  
+
+     public int  getRating( String courseName){
+           int rating=0;      
+         try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("SELECT rating FROM course WHERE course_name=?");
+             pst.setString(1,courseName);
+             ResultSet resultSet = pst.executeQuery();
+          
+               if (resultSet.next()) {
+                     rating = resultSet.getInt("rating");
+                   }
+               
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }
+         return rating;
+     } 
+     
+     
+     public void updateRating(String courseName,int rating){
+        
+         try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE course SET rating=? WHERE course_name=?");
+             pst.setInt(1,rating);
+             pst.setString(2,courseName);
+                      
+             pst.executeUpdate();  
+               
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }
+          
+     }
+     
 }

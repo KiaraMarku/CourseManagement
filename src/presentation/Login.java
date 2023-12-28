@@ -1,23 +1,23 @@
 package presentation;
 
-
 import entety.Student;
 import service.StudentService;
 
-
 public class Login extends javax.swing.JFrame {
-     Student user;
-     StudentService studentService;
+
+    Student user;
+    StudentService studentService;
+
     /**
      * Creates new form NewJFrame
      */
     public Login() {
-       
-       initComponents();
-      setLocationRelativeTo(null);
-      setVisible(true); 
-      user=new Student();
-      studentService=new StudentService();
+
+        initComponents();
+        setLocationRelativeTo(null);
+        setVisible(true);
+        user = new Student();
+        studentService = new StudentService();
     }
 
     /**
@@ -47,7 +47,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(102, 0, 153));
+        jPanel2.setBackground(new java.awt.Color(153, 102, 255));
 
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 50)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -65,7 +65,7 @@ public class Login extends javax.swing.JFrame {
         txtName.setBackground(new java.awt.Color(255, 255, 255));
         txtName.setForeground(new java.awt.Color(0, 0, 0));
 
-        logInButton.setBackground(new java.awt.Color(255, 51, 51));
+        logInButton.setBackground(new java.awt.Color(255, 102, 204));
         logInButton.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         logInButton.setForeground(new java.awt.Color(255, 255, 255));
         logInButton.setText("LOG IN");
@@ -76,7 +76,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        registerButton.setBackground(new java.awt.Color(102, 153, 255));
+        registerButton.setBackground(new java.awt.Color(0, 204, 204));
         registerButton.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         registerButton.setForeground(new java.awt.Color(255, 255, 255));
         registerButton.setText("Register");
@@ -176,46 +176,42 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
-        if(validateLogIn()&&validateUser()){
+        if (validateLogIn() && validateUser()) {
             this.setVisible(false);
-            Home home=new Home(user);
+            Home home = new Home(user);
         }
-        
+
     }//GEN-LAST:event_logInButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-         setVisible(false);
-         Register register=new Register();
+        setVisible(false);
+        Register register = new Register();
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
         System.exit(0);
     }//GEN-LAST:event_ExitMouseClicked
 
-    
-    public boolean validateLogIn(){
-           String name,password;
-       name=txtName.getText();
-       password=txtPassword.getText();
-      
-       return studentService.validateLogIn(name, password);
-   
+    public boolean validateLogIn() {
+        String name, password;
+        name = txtName.getText();
+        password = txtPassword.getText();
+
+        return studentService.validateLogIn(name, password);
+
     }
-    
-    public boolean validateUser(){
-         String name=txtName.getText();
-         String password=txtPassword.getText();
-          
-            Student student=studentService.validateStudent(name, password);
-            user=student;
-            return student!=null;
-     }
-    
- 
-    
-   
+
+    public boolean validateUser() {
+        String name = txtName.getText();
+        String password = txtPassword.getText();
+
+        Student student = studentService.validateStudent(name, password);
+        user = student;
+        return student != null;
+    }
+
     public static void main(String args[]) {
-     
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

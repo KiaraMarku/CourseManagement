@@ -1,29 +1,26 @@
-
 package presentation;
 
 import entety.Course;
 import entety.CourseSchedule;
 import entety.Student;
 import java.util.List;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import repository.CourseData;
-import rojeru_san.complementos.RSTableMetro;
 
 import service.CourseService;
 import service.StudentService;
 
 public class MyCourses extends javax.swing.JFrame {
-     Student user;
-     String courseName; // selected course from table
-     CourseService courseService;
-     StudentService studentService;
-   
+
+    Student user;
+    String courseName; // selected course from table
+    CourseService courseService;
+    StudentService studentService;
+
     public MyCourses(Student user) {
-        this.user=user;  
-        courseService=new CourseService();
-        studentService=new StudentService();
+        this.user = user;
+        courseService = new CourseService();
+        studentService = new StudentService();
         initComponents();
         txtUsername.setText(user.getUsername());
         setLocationRelativeTo(null);
@@ -31,20 +28,17 @@ public class MyCourses extends javax.swing.JFrame {
         showMyCourses();
         courseDetailsPanel.setVisible(false);
     }
-    
-   //for testing purposes
+
+    //for testing purposes
     public MyCourses() {
- 
-        courseService=new CourseService();
+
+        courseService = new CourseService();
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         showMyCourses();
         courseDetails.setVisible(false);
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,7 +113,7 @@ public class MyCourses extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 90));
 
-        jPanel2.setBackground(new java.awt.Color(153, 193, 250));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -457,7 +451,7 @@ public class MyCourses extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 1110, 710));
 
-        setSize(new java.awt.Dimension(1288, 800));
+        setSize(new java.awt.Dimension(1280, 750));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -466,16 +460,16 @@ public class MyCourses extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitMouseClicked
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        Home home=new Home(user);
+        Home home = new Home(user);
         this.setVisible(false);
     }//GEN-LAST:event_HomeActionPerformed
 
     private void myCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCoursesActionPerformed
-        
+
     }//GEN-LAST:event_myCoursesActionPerformed
 
     private void browseCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCoursesActionPerformed
-        BrowseCourses allCoursesPage=new BrowseCourses(user);
+        BrowseCourses allCoursesPage = new BrowseCourses(user);
         this.setVisible(false);
     }//GEN-LAST:event_browseCoursesActionPerformed
 
@@ -488,10 +482,10 @@ public class MyCourses extends javax.swing.JFrame {
     }//GEN-LAST:event_courseCalendarActionPerformed
 
     private void tblCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCourseMouseClicked
-   
-        int row=tblCourse.getSelectedRow();
-        TableModel model=tblCourse.getModel();
-        courseName=model.getValueAt(row,0).toString();
+
+        int row = tblCourse.getSelectedRow();
+        TableModel model = tblCourse.getModel();
+        courseName = model.getValueAt(row, 0).toString();
         showCourseDetails(courseName);
         showReview(courseName);
         courseDetailsPanel.setVisible(true);
@@ -499,19 +493,21 @@ public class MyCourses extends javax.swing.JFrame {
 
     private void btnJoinDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinDropActionPerformed
 
-        if(studentService.followsCourses(user, courseName))
-        studentService.dropCourse(user, courseName);
-        else studentService.joinCourse(user, courseName);
+        if (studentService.followsCourses(user, courseName)) {
+            studentService.dropCourse(user, courseName);
+        } else {
+            studentService.joinCourse(user, courseName);
+        }
         showCourseDetails(courseName);
-        
+
     }//GEN-LAST:event_btnJoinDropActionPerformed
 
     private void submitFeedbackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitFeedbackButtonActionPerformed
-        updateFeedback();  
+        updateFeedback();
     }//GEN-LAST:event_submitFeedbackButtonActionPerformed
 
     private void viewFeedbacksButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFeedbacksButtonActionPerformed
-        Reviews feedbackpage=new Reviews(user,courseName);
+        Reviews feedbackpage = new Reviews(user, courseName);
         this.setVisible(false);
     }//GEN-LAST:event_viewFeedbacksButtonActionPerformed
 
@@ -519,63 +515,60 @@ public class MyCourses extends javax.swing.JFrame {
         updateRating();
     }//GEN-LAST:event_submitRatingButtonActionPerformed
 
-  
-
     public void showMyCourses() {
-      List<Course> courses = courseService.getStudentCourses(user.getUsername());
-      DefaultTableModel model=(DefaultTableModel) tblCourse.getModel();
-    
-      for (Course course : courses) {
-          String[] row = { course.getName() };
-          
-          model.addRow(row);
-      }
-     
-      }
-    
-    public void showCourseDetails(String name){
-        Course course=courseService.getCourseDetails(name);
-        txtCourseName.setText(name);
-        txtLecturer.setText("Lecturer: "+course.getInstructor());
-        txtLocation.setText("Location: "+course.getLocation());
-        
-        List<CourseSchedule> courseSchedule=courseService.getCourseSchedule(name);
-        txtSchedule.setText("Schedule: ");;
-        for(CourseSchedule schedule: courseSchedule ){
-            txtSchedule.setText(txtSchedule.getText()+schedule.getMeetingDay()+" "
-                    + schedule.getStartTime()+"-"+schedule.getEndTime()+"   ");
+        List<Course> courses = courseService.getStudentCourses(user.getUsername());
+        DefaultTableModel model = (DefaultTableModel) tblCourse.getModel();
+
+        for (Course course : courses) {
+            String[] row = {course.getName()};
+
+            model.addRow(row);
         }
-        
-        txtNoStudents.setText("Number of students: "+courseService.getNoStudents(name));
-        
-        if(studentService.followsCourses(user, name))
-            btnJoinDrop.setText("Drop Course");
-        else btnJoinDrop.setText("Join Course");; 
+
     }
-    
-    
-    public void  showReview(String courseName){
-        int rating=studentService.getRating(user, courseName);
-        String feebback=studentService.getFeedback(user, courseName);
+
+    public void showCourseDetails(String name) {
+        Course course = courseService.getCourseDetails(name);
+        txtCourseName.setText(name);
+        txtLecturer.setText("Lecturer: " + course.getInstructor());
+        txtLocation.setText("Location: " + course.getLocation());
+
+        List<CourseSchedule> courseSchedule = courseService.getCourseSchedule(name);
+        txtSchedule.setText("Schedule: ");;
+        for (CourseSchedule schedule : courseSchedule) {
+            txtSchedule.setText(txtSchedule.getText() + schedule.getMeetingDay() + " "
+                    + schedule.getStartTime() + "-" + schedule.getEndTime() + "   ");
+        }
+
+        txtNoStudents.setText("Number of students: " + courseService.getNoStudents(name));
+
+        if (studentService.followsCourses(user, name)) {
+            btnJoinDrop.setText("Drop Course");
+        } else {
+            btnJoinDrop.setText("Join Course");
+        };
+    }
+
+    public void showReview(String courseName) {
+        int rating = studentService.getRating(user, courseName);
+        String feebback = studentService.getFeedback(user, courseName);
         txtCourseRating.setSelectedIndex(rating);
         txtAreaFeedback.setText(feebback);
     }
-    
-    public void updateRating(){
-        int rating=txtCourseRating.getSelectedIndex();
-        
-        studentService.rateCourse(user, courseName,rating);
+
+    public void updateRating() {
+        int rating = txtCourseRating.getSelectedIndex();
+
+        studentService.rateCourse(user, courseName, rating);
     }
-    
-    public void updateFeedback(){
-        String feedback=txtAreaFeedback.getText();
+
+    public void updateFeedback() {
+        String feedback = txtAreaFeedback.getText();
         studentService.leaveFeeback(user, courseName, feedback);
     }
-    
-    
-        public static void main(String args[]) {
-       
-     
+
+    public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MyCourses().setVisible(true);

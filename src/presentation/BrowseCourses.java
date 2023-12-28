@@ -1,29 +1,28 @@
-
 package presentation;
 
 import entety.Course;
 import entety.CourseSchedule;
 import entety.Student;
 import java.util.List;
-import javax.swing.JTable;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import repository.CourseData;
-import rojeru_san.complementos.RSTableMetro;
+
 
 import service.CourseService;
 import service.StudentService;
 
 public class BrowseCourses extends javax.swing.JFrame {
-     Student user;
-     String courseName; // selected course from table
-     CourseService courseService;
-     StudentService studentService;
-   
+
+    Student user;
+    String courseName; // selected course from table
+    CourseService courseService;
+    StudentService studentService;
+
     public BrowseCourses(Student user) {
-        this.user=user;  
-        courseService=new CourseService();
-        studentService=new StudentService();
+        this.user = user;
+        courseService = new CourseService();
+        studentService = new StudentService();
         initComponents();
         txtUsername.setText(user.getUsername());
         setLocationRelativeTo(null);
@@ -31,21 +30,18 @@ public class BrowseCourses extends javax.swing.JFrame {
         showAllCourses();
         courseDetailsPanel.setVisible(false);
     }
-    
-   //for testing purposes
+
+    //for testing purposes
     public BrowseCourses() {
- 
-        courseService=new CourseService();
-        
+
+        courseService = new CourseService();
+
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
         showAllCourses();
         courseDetailsPanel.setVisible(false);
     }
-    
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -111,7 +107,7 @@ public class BrowseCourses extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 90));
 
-        jPanel2.setBackground(new java.awt.Color(153, 193, 250));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -349,7 +345,7 @@ public class BrowseCourses extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 1110, 710));
 
-        setSize(new java.awt.Dimension(1288, 800));
+        setSize(new java.awt.Dimension(1280, 750));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -358,17 +354,17 @@ public class BrowseCourses extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitMouseClicked
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        Home home=new Home(user);
+        Home home = new Home(user);
         this.setVisible(false);
     }//GEN-LAST:event_HomeActionPerformed
 
     private void myCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCoursesActionPerformed
-        MyCourses myCourses=new MyCourses(user);
+        MyCourses myCourses = new MyCourses(user);
         this.setVisible(false);
     }//GEN-LAST:event_myCoursesActionPerformed
 
     private void browseCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCoursesActionPerformed
-        
+
     }//GEN-LAST:event_browseCoursesActionPerformed
 
     private void topCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topCoursesActionPerformed
@@ -381,66 +377,65 @@ public class BrowseCourses extends javax.swing.JFrame {
 
     private void tblCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCourseMouseClicked
         // TODO add your handling code here:
-        int row=tblCourse.getSelectedRow();
-        TableModel model=tblCourse.getModel();
-        courseName=model.getValueAt(row,0).toString();
+        int row = tblCourse.getSelectedRow();
+        TableModel model = tblCourse.getModel();
+        courseName = model.getValueAt(row, 0).toString();
         showCourseDetails(courseName);
         courseDetailsPanel.setVisible(true);
     }//GEN-LAST:event_tblCourseMouseClicked
 
     private void viewFeedbacsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFeedbacsButtonActionPerformed
-        Reviews feedbackpage=new Reviews(user,courseName);
+        Reviews feedbackpage = new Reviews(user, courseName);
         this.setVisible(false);
-   
+
     }//GEN-LAST:event_viewFeedbacsButtonActionPerformed
 
     private void btnJoinDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinDropActionPerformed
-          if(studentService.followsCourses(user, courseName))
-        studentService.dropCourse(user, courseName);
-        else studentService.joinCourse(user, courseName);
+        if (studentService.followsCourses(user, courseName)) {
+            studentService.dropCourse(user, courseName);
+        } else {
+            studentService.joinCourse(user, courseName);
+        }
         showCourseDetails(courseName);
     }//GEN-LAST:event_btnJoinDropActionPerformed
 
-  
-
     public void showAllCourses() {
-      List<Course> courses = courseService.getAllCourses();
-      DefaultTableModel model=(DefaultTableModel) tblCourse.getModel();
-    
-      for (Course course : courses) {
-          String[] row = { course.getName() };
-          
-          model.addRow(row);
-      }
-     
-      }
-    
-    public void showCourseDetails(String name){
-        Course course=courseService.getCourseDetails(name);
-        txtCourseName.setText(name);
-        txtLecturer.setText("Lecturer: "+course.getInstructor());
-        txtLocation.setText("Location: "+course.getLocation());
-        
-        List<CourseSchedule> courseSchedule=courseService.getCourseSchedule(name);
-        txtSchedule.setText("Schedule: ");;
-        for(CourseSchedule schedule: courseSchedule ){
-            txtSchedule.setText(txtSchedule.getText()+schedule.getMeetingDay()+" "
-                    + schedule.getStartTime()+"-"+schedule.getEndTime()+"   ");
+        List<Course> courses = courseService.getAllCourses();
+        DefaultTableModel model = (DefaultTableModel) tblCourse.getModel();
+
+        for (Course course : courses) {
+            String[] row = {course.getName()};
+
+            model.addRow(row);
         }
-        
-        txtNoStudents.setText("Number of students: "+courseService.getNoStudents(name));
-        
-        if(studentService.followsCourses(user, name))
-            btnJoinDrop.setText("Drop Course");
-        else btnJoinDrop.setText("Join Course");;
-       
-        
-        
+
     }
-    
-        public static void main(String args[]) {
-       
-     
+
+    public void showCourseDetails(String name) {
+        Course course = courseService.getCourseDetails(name);
+        txtCourseName.setText(name);
+        txtLecturer.setText("Lecturer: " + course.getInstructor());
+        txtLocation.setText("Location: " + course.getLocation());
+
+        List<CourseSchedule> courseSchedule = courseService.getCourseSchedule(name);
+        txtSchedule.setText("Schedule: ");;
+        for (CourseSchedule schedule : courseSchedule) {
+            txtSchedule.setText(txtSchedule.getText() + schedule.getMeetingDay() + " "
+                    + schedule.getStartTime() + "-" + schedule.getEndTime() + "   ");
+        }
+
+        txtNoStudents.setText("Number of students: " + courseService.getNoStudents(name));
+
+        if (studentService.followsCourses(user, name)) {
+            btnJoinDrop.setText("Drop Course");
+        } else {
+            btnJoinDrop.setText("Join Course");
+        };
+
+    }
+
+    public static void main(String args[]) {
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new BrowseCourses().setVisible(true);

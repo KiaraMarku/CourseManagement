@@ -48,7 +48,7 @@ public class Home_1 extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 153));
+        jPanel1.setBackground(new java.awt.Color(51, 0, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
@@ -79,7 +79,7 @@ public class Home_1 extends javax.swing.JFrame {
 
         homeButton.setBackground(new java.awt.Color(255, 255, 255));
         homeButton.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        homeButton.setForeground(new java.awt.Color(102, 0, 153));
+        homeButton.setForeground(new java.awt.Color(51, 0, 153));
         homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home (1).png"))); // NOI18N
         homeButton.setText("Home");
         homeButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -91,7 +91,7 @@ public class Home_1 extends javax.swing.JFrame {
 
         myCourses.setBackground(new java.awt.Color(255, 255, 255));
         myCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        myCourses.setForeground(new java.awt.Color(102, 0, 153));
+        myCourses.setForeground(new java.awt.Color(51, 0, 153));
         myCourses.setText("My Courses");
         myCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         myCourses.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +102,7 @@ public class Home_1 extends javax.swing.JFrame {
 
         browseCourses.setBackground(new java.awt.Color(255, 255, 255));
         browseCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        browseCourses.setForeground(new java.awt.Color(102, 0, 153));
+        browseCourses.setForeground(new java.awt.Color(51, 0, 153));
         browseCourses.setText("Browse Courses");
         browseCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         browseCourses.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +113,7 @@ public class Home_1 extends javax.swing.JFrame {
 
         topCourses.setBackground(new java.awt.Color(255, 255, 255));
         topCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        topCourses.setForeground(new java.awt.Color(102, 0, 153));
+        topCourses.setForeground(new java.awt.Color(51, 0, 153));
         topCourses.setText("Top Courses");
         topCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         topCourses.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +124,7 @@ public class Home_1 extends javax.swing.JFrame {
 
         courseCalendar.setBackground(new java.awt.Color(255, 255, 255));
         courseCalendar.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        courseCalendar.setForeground(new java.awt.Color(102, 0, 153));
+        courseCalendar.setForeground(new java.awt.Color(51, 0, 153));
         courseCalendar.setText(" Courses Calendar");
         courseCalendar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         courseCalendar.addActionListener(new java.awt.event.ActionListener() {

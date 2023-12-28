@@ -36,9 +36,9 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JLabel();
         Exit = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         browseCourses = new javax.swing.JButton();
         homeButton = new javax.swing.JButton();
@@ -47,20 +47,15 @@ public class Home extends javax.swing.JFrame {
         courseCalendar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 0, 153));
+        jPanel1.setBackground(new java.awt.Color(51, 0, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/menu-bar.png"))); // NOI18N
-        jLabel1.setText(" Course Manager");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 320, 60));
 
         txtUsername.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(255, 255, 255));
@@ -79,15 +74,21 @@ public class Home extends javax.swing.JFrame {
         });
         jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 0, 30, 40));
 
+        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book-stack.png"))); // NOI18N
+        jLabel1.setText(" Course Manager");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 320, 70));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1300, 90));
 
-        jPanel2.setBackground(new java.awt.Color(153, 193, 250));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
         browseCourses.setBackground(new java.awt.Color(255, 255, 255));
         browseCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        browseCourses.setForeground(new java.awt.Color(102, 0, 153));
+        browseCourses.setForeground(new java.awt.Color(51, 0, 153));
         browseCourses.setText("Browse Courses");
         browseCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         browseCourses.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +99,7 @@ public class Home extends javax.swing.JFrame {
 
         homeButton.setBackground(new java.awt.Color(255, 255, 255));
         homeButton.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        homeButton.setForeground(new java.awt.Color(102, 0, 153));
+        homeButton.setForeground(new java.awt.Color(51, 0, 153));
         homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home (1).png"))); // NOI18N
         homeButton.setText("Home");
         homeButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -110,7 +111,7 @@ public class Home extends javax.swing.JFrame {
 
         topCourses.setBackground(new java.awt.Color(255, 255, 255));
         topCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        topCourses.setForeground(new java.awt.Color(102, 0, 153));
+        topCourses.setForeground(new java.awt.Color(51, 0, 153));
         topCourses.setText("Top Courses");
         topCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         topCourses.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +122,7 @@ public class Home extends javax.swing.JFrame {
 
         myCourses.setBackground(new java.awt.Color(255, 255, 255));
         myCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        myCourses.setForeground(new java.awt.Color(102, 0, 153));
+        myCourses.setForeground(new java.awt.Color(51, 0, 153));
         myCourses.setText("My Courses");
         myCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         myCourses.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +133,7 @@ public class Home extends javax.swing.JFrame {
 
         courseCalendar.setBackground(new java.awt.Color(255, 255, 255));
         courseCalendar.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
-        courseCalendar.setForeground(new java.awt.Color(102, 0, 153));
+        courseCalendar.setForeground(new java.awt.Color(51, 0, 153));
         courseCalendar.setText(" Courses Calendar");
         courseCalendar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         courseCalendar.addActionListener(new java.awt.event.ActionListener() {
@@ -179,26 +180,38 @@ public class Home extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/online-learning.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/e-learning.jpg"))); // NOI18N
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Book Antiqua", 3, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 0, 102));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Wellcome to your Course Manager...");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(156, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(127, 127, 127))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(428, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(337, 337, 337))
+                .addGap(302, 302, 302)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 1110, 710));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 1110, 710));
 
         setSize(new java.awt.Dimension(1280, 750));
         setLocationRelativeTo(null);
@@ -209,8 +222,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitMouseClicked
 
     private void browseCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCoursesActionPerformed
-
         BrowseCourses allCoursesPage=new BrowseCourses(user);
+        this.setVisible(false);
     }//GEN-LAST:event_browseCoursesActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
@@ -222,7 +235,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_topCoursesActionPerformed
 
     private void myCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCoursesActionPerformed
-        // TODO add your handling code here:
+        MyCourses myCourses=new MyCourses(user);
+        this.setVisible(false);
     }//GEN-LAST:event_myCoursesActionPerformed
 
     private void courseCalendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseCalendarActionPerformed
@@ -249,6 +263,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

@@ -1,43 +1,35 @@
-
 package presentation;
 
-import entety.Course;
 import entety.CourseReview;
-import entety.CourseSchedule;
 import entety.Student;
 import java.util.List;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import repository.CourseData;
-import rojeru_san.complementos.RSTableMetro;
 
 import service.CourseService;
 import service.StudentService;
 
 public class Reviews extends javax.swing.JFrame {
-     Student user;
-     String courseName;
-     String studentName; //selected student 
-     CourseService courseService;
-     StudentService studentService;
-   
-    public Reviews(Student user,String courseName) {
-        this.user=user;  
-        this.courseName=courseName;
-        courseService=new CourseService();
-        studentService=new StudentService();
+
+    Student user;
+    String courseName;
+    String studentName; //selected student 
+    CourseService courseService;
+    StudentService studentService;
+
+    public Reviews(Student user, String courseName) {
+        this.user = user;
+        this.courseName = courseName;
+        courseService = new CourseService();
+        studentService = new StudentService();
         initComponents();
         txtUsername.setText(user.getUsername());
-        txtCourseName.setText("Reviews for "+courseName);
+        txtCourseName.setText("Reviews for " + courseName);
         setLocationRelativeTo(null);
         setVisible(true);
         showAllReviews();
         reviewsPanel.setVisible(false);
     }
-    
- 
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,6 +59,7 @@ public class Reviews extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtReviewer = new javax.swing.JLabel();
         txtCourseName = new javax.swing.JLabel();
+        txtRating = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -101,7 +94,7 @@ public class Reviews extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 90));
 
-        jPanel2.setBackground(new java.awt.Color(153, 193, 250));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -242,7 +235,7 @@ public class Reviews extends javax.swing.JFrame {
 
         txtReviewer.setBackground(new java.awt.Color(255, 255, 255));
         txtReviewer.setFont(new java.awt.Font("Bookman Old Style", 3, 18)); // NOI18N
-        txtReviewer.setForeground(new java.awt.Color(255, 255, 255));
+        txtReviewer.setForeground(new java.awt.Color(204, 0, 153));
 
         javax.swing.GroupLayout reviewsPanelLayout = new javax.swing.GroupLayout(reviewsPanel);
         reviewsPanel.setLayout(reviewsPanelLayout);
@@ -259,19 +252,23 @@ public class Reviews extends javax.swing.JFrame {
         reviewsPanelLayout.setVerticalGroup(
             reviewsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reviewsPanelLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtReviewer, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74))
         );
 
         txtCourseName.setBackground(new java.awt.Color(255, 255, 255));
         txtCourseName.setFont(new java.awt.Font("Bookman Old Style", 3, 18)); // NOI18N
         txtCourseName.setForeground(new java.awt.Color(51, 0, 153));
         txtCourseName.setText("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+
+        txtRating.setBackground(new java.awt.Color(255, 255, 255));
+        txtRating.setFont(new java.awt.Font("Bookman Old Style", 3, 18)); // NOI18N
+        txtRating.setForeground(new java.awt.Color(153, 0, 102));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -282,26 +279,33 @@ public class Reviews extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtCourseName, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRating, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58)
                         .addComponent(reviewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
                 .addComponent(txtCourseName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(reviewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(reviewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(txtRating, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 1110, 710));
 
-        setSize(new java.awt.Dimension(1288, 800));
+        setSize(new java.awt.Dimension(1280, 750));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -310,17 +314,17 @@ public class Reviews extends javax.swing.JFrame {
     }//GEN-LAST:event_ExitMouseClicked
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        Home home=new Home(user);
+        Home home = new Home(user);
         this.setVisible(false);
     }//GEN-LAST:event_HomeActionPerformed
 
     private void myCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCoursesActionPerformed
-        MyCourses myCourses=new MyCourses(user);
+        MyCourses myCourses = new MyCourses(user);
         this.setVisible(false);
     }//GEN-LAST:event_myCoursesActionPerformed
 
     private void browseCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCoursesActionPerformed
-        BrowseCourses allCoursesPage=new BrowseCourses(user);
+        BrowseCourses allCoursesPage = new BrowseCourses(user);
         this.setVisible(false);
     }//GEN-LAST:event_browseCoursesActionPerformed
 
@@ -334,40 +338,37 @@ public class Reviews extends javax.swing.JFrame {
 
     private void tblReviewsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblReviewsMouseClicked
 
-        int row=tblReviews.getSelectedRow();
-        TableModel model=tblReviews.getModel();
-        studentName=model.getValueAt(row,0).toString();
+        int row = tblReviews.getSelectedRow();
+        TableModel model = tblReviews.getModel();
+        studentName = model.getValueAt(row, 0).toString();
         reviewsPanel.setVisible(true);
         showFeedback(studentName);
+        txtRating.setText("Rating: "+ courseService.getRating(courseName));
     }//GEN-LAST:event_tblReviewsMouseClicked
 
-  
-
     public void showAllReviews() {
-      List<CourseReview> reviews= courseService.getAllReviews(courseName);
-      
-      DefaultTableModel model=(DefaultTableModel) tblReviews.getModel();
-    
-      for (CourseReview review: reviews) {
-          Object[] row = { review.getStudentName(),review.getRating(),review.getDate()};
-          model.addRow(row);
-      }
-     
-      }
-    
-    public void showFeedback(String studentName){
-        txtReviewer.setText("Reviewer: "+studentName); 
-      List<CourseReview> reviews= courseService.getAllReviews(courseName);
-        for (CourseReview review: reviews) {
-         if(review.getStudentName().equals(studentName)){
-             txtAreaFeedback.setText(review.getFeedback());
-         }
-             
-      }
+        List<CourseReview> reviews = courseService.getAllReviews(courseName);
+
+        DefaultTableModel model = (DefaultTableModel) tblReviews.getModel();
+
+        for (CourseReview review : reviews) {
+            Object[] row = {review.getStudentName(), review.getRating(), review.getDate()};
+            model.addRow(row);
+        }
+
     }
-    
-    
-  
+
+    public void showFeedback(String studentName) {
+        txtReviewer.setText("Reviewer: " + studentName);
+        List<CourseReview> reviews = courseService.getAllReviews(courseName);
+        for (CourseReview review : reviews) {
+            if (review.getStudentName().equals(studentName)) {
+                txtAreaFeedback.setText(review.getFeedback());
+            }
+
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Exit;
@@ -387,6 +388,7 @@ public class Reviews extends javax.swing.JFrame {
     private javax.swing.JButton topCourses;
     private javax.swing.JTextArea txtAreaFeedback;
     private javax.swing.JLabel txtCourseName;
+    private javax.swing.JLabel txtRating;
     private javax.swing.JLabel txtReviewer;
     private javax.swing.JLabel txtUsername;
     // End of variables declaration//GEN-END:variables
