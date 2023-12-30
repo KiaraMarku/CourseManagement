@@ -62,9 +62,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
 
-        txtName.setBackground(new java.awt.Color(255, 255, 255));
-        txtName.setForeground(new java.awt.Color(0, 0, 0));
-
         logInButton.setBackground(new java.awt.Color(255, 102, 204));
         logInButton.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         logInButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -86,9 +83,6 @@ public class Login extends javax.swing.JFrame {
                 registerButtonActionPerformed(evt);
             }
         });
-
-        txtPassword.setBackground(new java.awt.Color(255, 255, 255));
-        txtPassword.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

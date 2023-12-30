@@ -180,7 +180,6 @@
                 <BevelBorder/>
               </Border>
             </Property>
-            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="browseCoursesActionPerformed"/>
@@ -203,7 +202,6 @@
                 <EtchetBorder/>
               </Border>
             </Property>
-            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeButtonActionPerformed"/>
@@ -223,7 +221,6 @@
                 <BevelBorder/>
               </Border>
             </Property>
-            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="topCoursesActionPerformed"/>
@@ -243,7 +240,6 @@
                 <BevelBorder/>
               </Border>
             </Property>
-            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="myCoursesActionPerformed"/>
@@ -263,7 +259,6 @@
                 <BevelBorder/>
               </Border>
             </Property>
-            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="courseCalendarActionPerformed"/>
@@ -279,7 +274,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="220" y="90" width="1100" height="710"/>
+          <AbsoluteConstraints x="210" y="90" width="1110" height="710"/>
         </Constraint>
       </Constraints>
 
@@ -287,12 +282,12 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="146" max="32767" attributes="0"/>
+                  <EmptySpace pref="156" max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" pref="827" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="294" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="302" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" pref="428" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -330,7 +325,7 @@
               <Color blue="66" green="0" red="33" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Welcome to your Course Manager..."/>
+            <Property name="text" type="java.lang.String" value="Wellcome to your Course Manager..."/>
           </Properties>
         </Component>
       </SubComponents>
