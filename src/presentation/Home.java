@@ -92,6 +92,7 @@ public class Home extends javax.swing.JFrame {
         browseCourses.setForeground(new java.awt.Color(51, 0, 153));
         browseCourses.setText("Browse Courses");
         browseCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        browseCourses.setFocusPainted(false);
         browseCourses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 browseCoursesActionPerformed(evt);
@@ -103,6 +104,7 @@ public class Home extends javax.swing.JFrame {
         homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home (1).png"))); // NOI18N
         homeButton.setText("Home");
         homeButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        homeButton.setFocusPainted(false);
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeButtonActionPerformed(evt);
@@ -113,6 +115,7 @@ public class Home extends javax.swing.JFrame {
         topCourses.setForeground(new java.awt.Color(51, 0, 153));
         topCourses.setText("Top Courses");
         topCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        topCourses.setFocusPainted(false);
         topCourses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 topCoursesActionPerformed(evt);
@@ -123,6 +126,7 @@ public class Home extends javax.swing.JFrame {
         myCourses.setForeground(new java.awt.Color(51, 0, 153));
         myCourses.setText("My Courses");
         myCourses.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        myCourses.setFocusPainted(false);
         myCourses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 myCoursesActionPerformed(evt);
@@ -133,6 +137,7 @@ public class Home extends javax.swing.JFrame {
         courseCalendar.setForeground(new java.awt.Color(51, 0, 153));
         courseCalendar.setText(" Courses Calendar");
         courseCalendar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        courseCalendar.setFocusPainted(false);
         courseCalendar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 courseCalendarActionPerformed(evt);
@@ -183,18 +188,18 @@ public class Home extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Book Antiqua", 3, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 0, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Wellcome to your Course Manager...");
+        jLabel3.setText("Welcome to your Course Manager...");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(156, Short.MAX_VALUE)
+                .addContainerGap(146, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(127, 127, 127))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(302, 302, 302)
+                .addGap(294, 294, 294)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -208,7 +213,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 1110, 710));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 1100, 710));
 
         setSize(new java.awt.Dimension(1280, 750));
         setLocationRelativeTo(null);
@@ -244,7 +249,7 @@ public class Home extends javax.swing.JFrame {
    
     //the only purpose of this method is to improve user experinence
     public void disposeCurrentFrame(){
-         Timer timer = new Timer(1000, new ActionListener() {
+         Timer timer = new Timer(500, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
             // Dispose the current frame  after the delay

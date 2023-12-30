@@ -7,7 +7,6 @@ package repository;
 import entety.Course;
 import entety.CourseReview;
 import entety.CourseSchedule;
-import static java.lang.Integer.parseInt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,7 +35,7 @@ public class CourseData {
             String courseName = resultSet.getString("course_name");
             String instructor = resultSet.getString("instructor");
             String location = resultSet.getString("location");
-            int rating=parseInt(resultSet.getString("rating"));
+            double rating=resultSet.getDouble("rating");
             Course course = new Course(courseID, courseName, instructor, location,rating);
             courses.add(course);
          
@@ -61,9 +60,9 @@ public class CourseData {
             String courseName = resultSet.getString("course_name");
             String instructor = resultSet.getString("instructor");
             String location = resultSet.getString("location");
-            int rating=parseInt(resultSet.getString("rating"));
+            double rating=resultSet.getDouble("rating");
            
-            Course course = new Course(courseID, courseName, instructor, location,rating);
+            Course course = new Course(courseID, courseName, instructor, location, rating);
             courses.add(course);
          
         }
@@ -91,7 +90,7 @@ public class CourseData {
             int courseID = resultSet.getInt("course_id");
             String instructor = resultSet.getString("instructor");
             String location = resultSet.getString("location");
-            int rating=parseInt(resultSet.getString("rating"));
+            double rating=resultSet.getDouble("rating");
             course = new Course(courseID, courseName, instructor, location,rating);
           
         }
@@ -181,8 +180,8 @@ public class CourseData {
     }
     
     
-    public int  calculateRatingAverage( String courseName){
-           int averageRating=0;      
+    public double  calculateRatingAverage( String courseName){
+           double averageRating=0;      
          try {
            Connection con=JDBConnection.getConnection();
             PreparedStatement pst = con.prepareStatement("SELECT AVG(rating) FROM student_course WHERE course_id = (SELECT course_id FROM course WHERE course_name=?)");
@@ -201,8 +200,8 @@ public class CourseData {
          return averageRating;
      }  
 
-     public int  getRating( String courseName){
-           int rating=0;      
+     public double  getRating( String courseName){
+           double rating=0;      
          try {
            Connection con=JDBConnection.getConnection();
             PreparedStatement pst = con.prepareStatement("SELECT rating FROM course WHERE course_name=?");
@@ -210,7 +209,7 @@ public class CourseData {
              ResultSet resultSet = pst.executeQuery();
           
                if (resultSet.next()) {
-                     rating = resultSet.getInt("rating");
+                     rating = resultSet.getDouble("rating");
                    }
                
        } catch (Exception e) {
@@ -222,12 +221,12 @@ public class CourseData {
      } 
      
      
-     public void updateRating(String courseName,int rating){
+     public void updateRating(String courseName,double rating){
         
          try {
            Connection con=JDBConnection.getConnection();
             PreparedStatement pst = con.prepareStatement("UPDATE course SET rating=? WHERE course_name=?");
-             pst.setInt(1,rating);
+             pst.setDouble(1,rating);
              pst.setString(2,courseName);
                       
              pst.executeUpdate();  
@@ -239,5 +238,23 @@ public class CourseData {
        }
           
      }
+     
+     public void deleteOldFeedback(){
+          
+            try {
+            Connection con = JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("UPDATE student_course SET feedback=null WHERE date<=CURDATE()- INTERVAL 1 WEEK ");
+        ;
+           
+            pst.executeUpdate();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+        }
+
+     }
+         
      
 }

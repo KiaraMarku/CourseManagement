@@ -1,12 +1,14 @@
 package presentation;
 
 import entety.Student;
+import service.CourseService;
 import service.StudentService;
 
 public class Login extends javax.swing.JFrame {
 
     Student user;
     StudentService studentService;
+    
 
     /**
      * Creates new form NewJFrame
@@ -18,6 +20,7 @@ public class Login extends javax.swing.JFrame {
         setVisible(true);
         user = new Student();
         studentService = new StudentService();
+      
     }
 
     /**
@@ -173,6 +176,8 @@ public class Login extends javax.swing.JFrame {
         if (validateLogIn() && validateUser()) {
             this.setVisible(false);
             Home home = new Home(user);
+            CourseService  courseService=new CourseService();
+            courseService.deleteOldFeedback();
         }
 
     }//GEN-LAST:event_logInButtonActionPerformed
