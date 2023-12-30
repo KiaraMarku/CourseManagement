@@ -4,33 +4,27 @@
  */
 package entety;
 
-import java.time.LocalTime;
 import java.util.List;
 
-public class Course implements Comparable{
+public class Course {
 
     int id;
     String name;
     String instructor;
     String location;
-    double rating;
-    CourseSchedule schedule;
+    int rating;
+    List<CourseReview> reviews;
 
     public Course() {
     }
 
-    public Course(int id, String name, String instructor, String location, double rating) {
+    public Course(int id, String name, String instructor, String location, int rating) {
         this.id = id;
         this.name = name;
         this.instructor = instructor;
         this.location = location;
         this.rating = rating;
 
-    }
-    
-    public Course(String name, CourseSchedule schedule){
-        this.name=name;
-        this.schedule=schedule;
     }
 
     public int getId() {
@@ -49,25 +43,8 @@ public class Course implements Comparable{
         return location;
     }
 
-    public double getRating() {
+    public int getRating() {
         return rating;
-    }
-    
-     public LocalTime getStartTime() {
-        return schedule.startTime;
-    }
-
-    public LocalTime getEndTime() {
-        return schedule.endTime;
-    }
-
-    public String getMeetingDay() {
-        return schedule.meetingDay;
-    }
-    @Override
-    public int compareTo(Object o) {
-      Course  course=(Course)o;
-      return (int)(this.rating-course.rating);
     }
 
 }

@@ -1,10 +1,7 @@
 package service;
 
 import entety.Course;
-import entety.CourseReview;
 import entety.CourseSchedule;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import repository.CourseData;
 
@@ -33,51 +30,16 @@ public class CourseService {
     }
 
     public List getAllReviews(String courseName) {
-        
         return courseData.getCourseReviews(courseName);
     }
-     public List getAllFeedback(String courseName) {
-        List validFeedbacks=new ArrayList<CourseReview>();
-        List<CourseReview> allReviews =courseData.getCourseReviews(courseName);
-        
-        for(CourseReview review:allReviews){
-            if(review.getFeedback()!=null){
-                validFeedbacks.add(review);
-            }
-        }
-        return validFeedbacks;
+    
+    public int getRating(String courseNmae){
+        updateRating(courseNmae);
+        return courseData.getRating(courseNmae);
     }
     
-    
-    public double getRating(String courseName){
-        updateRating(courseName);
-        return courseData.getRating(courseName);
-    }
-    
-    public void updateRating(String courseName){
-        double newRating=courseData.calculateRatingAverage(courseName);
-        courseData.updateRating(courseName, newRating);
-    }
-    
-    public Course[] getTopCourses(){
-        List<Course> allCourses= courseData.getAllCourses();
-        Course[] topCourses=new Course[8];
-        
-        Collections.sort(allCourses);
-        int lastIndex=allCourses.size()-1;
-        
-        
-        for(int i=0;i<8;i++){
-            topCourses[i]=allCourses.get(lastIndex-i);
-        }
-        return topCourses;
-    }
-    
-    public void deleteOldFeedback(){
-        new CourseData().deleteOldFeedback();
-    }
-    
-    public List getStudentSchedule(String studentName){
-       return courseData.getStudentCourseSchedule(studentName);
+    public void updateRating(String courseNmae){
+        int newRating=courseData.calculateRatingAverage(courseNmae);
+        courseData.updateRating(courseNmae, newRating);
     }
 }
