@@ -8,7 +8,6 @@ public class Login extends javax.swing.JFrame {
 
     Student user;
     StudentService studentService;
-    
 
     /**
      * Creates new form NewJFrame
@@ -20,7 +19,7 @@ public class Login extends javax.swing.JFrame {
         setVisible(true);
         user = new Student();
         studentService = new StudentService();
-      
+
     }
 
     /**
@@ -65,6 +64,9 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
 
+        txtName.setBackground(new java.awt.Color(255, 255, 255));
+        txtName.setForeground(new java.awt.Color(0, 0, 0));
+
         logInButton.setBackground(new java.awt.Color(255, 102, 204));
         logInButton.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         logInButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -86,6 +88,9 @@ public class Login extends javax.swing.JFrame {
                 registerButtonActionPerformed(evt);
             }
         });
+
+        txtPassword.setBackground(new java.awt.Color(255, 255, 255));
+        txtPassword.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -176,7 +181,7 @@ public class Login extends javax.swing.JFrame {
         if (validateLogIn() && validateUser()) {
             this.setVisible(false);
             Home home = new Home(user);
-            CourseService  courseService=new CourseService();
+            CourseService courseService = new CourseService();
             courseService.deleteOldFeedback();
         }
 
@@ -209,15 +214,6 @@ public class Login extends javax.swing.JFrame {
         return student != null;
     }
 
-    public static void main(String args[]) {
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Exit;

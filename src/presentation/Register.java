@@ -3,8 +3,8 @@ package presentation;
 import service.StudentService;
 
 public class Register extends javax.swing.JFrame {
-    //used to access the database
 
+    //used to access the database
     StudentService studentService;
 
     public Register() {
@@ -339,18 +339,6 @@ public class Register extends javax.swing.JFrame {
 
         return studentService.userExists(name);
     }
-
-    public static void main(String args[]) {
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Register().setVisible(true);
-            }
-
-        });
-    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Exit;

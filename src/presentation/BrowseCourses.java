@@ -34,18 +34,6 @@ public class BrowseCourses extends javax.swing.JFrame {
         courseDetailsPanel.setVisible(false);
     }
 
-    //for testing purposes
-    public BrowseCourses() {
-
-        courseService = new CourseService();
-
-        initComponents();
-        setLocationRelativeTo(null);
-        setVisible(true);
-        showAllCourses();
-        courseDetailsPanel.setVisible(false);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -445,7 +433,8 @@ public class BrowseCourses extends javax.swing.JFrame {
     }//GEN-LAST:event_browseCoursesActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        Home homepage=new Home(user);
+        Home homepage = new Home(user);
+        disposeCurrentFrame();
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void topCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topCoursesActionPerformed
@@ -459,7 +448,8 @@ public class BrowseCourses extends javax.swing.JFrame {
     }//GEN-LAST:event_myCoursesActionPerformed
 
     private void courseCalendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseCalendarActionPerformed
-        // TODO add your handling code here:
+        CourseCalendar schedulePage=new CourseCalendar(user);
+        disposeCurrentFrame();
     }//GEN-LAST:event_courseCalendarActionPerformed
 
     private void btnJoinDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinDropActionPerformed
@@ -523,14 +513,6 @@ public class BrowseCourses extends javax.swing.JFrame {
     timer.start();
     }
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BrowseCourses().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Exit;

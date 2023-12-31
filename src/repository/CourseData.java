@@ -52,7 +52,8 @@ public class CourseData {
     List<Course> courses=new ArrayList<Course> ();
           try {
            Connection con=JDBConnection.getConnection();
-            PreparedStatement pst = con.prepareStatement( "select * from course where course.course_id in (select student_course.course_id from student_course where student_name=? )");
+            PreparedStatement pst = con.prepareStatement( "select * from course where course.course_id in "
+                    + "(select student_course.course_id from student_course where student_name=? )");
              pst.setString(1, studentName);
              ResultSet resultSet = pst.executeQuery();
         while (resultSet.next()) {
@@ -135,7 +136,8 @@ public class CourseData {
            int studentCount=0;      
          try {
            Connection con=JDBConnection.getConnection();
-            PreparedStatement pst = con.prepareStatement("select count(*) from student_course where course_id = (select course_id from course where course_name=?)");
+            PreparedStatement pst = con.prepareStatement("select count(*) from student_course where course_id ="
+                    + " (select course_id from course where course_name=?)");
              pst.setString(1,courseName);
              ResultSet resultSet = pst.executeQuery();
           
@@ -184,7 +186,8 @@ public class CourseData {
            double averageRating=0;      
          try {
            Connection con=JDBConnection.getConnection();
-            PreparedStatement pst = con.prepareStatement("SELECT AVG(rating) FROM student_course WHERE course_id = (SELECT course_id FROM course WHERE course_name=?)");
+            PreparedStatement pst = con.prepareStatement("SELECT AVG(rating) FROM student_course WHERE course_id = "
+                    + "(SELECT course_id FROM course WHERE course_name=?)");
              pst.setString(1,courseName);
              ResultSet resultSet = pst.executeQuery();
           
@@ -243,8 +246,8 @@ public class CourseData {
           
             try {
             Connection con = JDBConnection.getConnection();
-            PreparedStatement pst = con.prepareStatement("UPDATE student_course SET feedback=null WHERE date<=CURDATE()- INTERVAL 1 WEEK ");
-        ;
+            PreparedStatement pst = con.prepareStatement("UPDATE student_course SET feedback=null "
+                    + "WHERE date<=CURDATE()- INTERVAL 1 YEAR");
            
             pst.executeUpdate();
 
@@ -255,6 +258,43 @@ public class CourseData {
         }
 
      }
+     
+    public List getStudentCourseSchedule(String studentName){
+        
+       List <Course> studentSchedule= new  ArrayList<Course>();
+         
+         try {
+           Connection con=JDBConnection.getConnection();
+            PreparedStatement pst = con.prepareStatement("SELECT course.course_name, course_schedule.meeting_day,"+
+                        "course_schedule.start_time,course_schedule.end_time " +
+                        "FROM student_course " +
+                        "INNER JOIN course " +
+                        "ON student_course.course_id = course.course_id " +
+                        "INNER JOIN course_schedule " +
+                        "ON student_course.course_id = course_schedule.course_id " +
+                        "WHERE student_course.student_name =? " +
+                        "order by course_schedule.start_time");
+            pst.setString(1, studentName);
+            
+        ResultSet resultSet = pst.executeQuery();
+        while (resultSet.next()) {
+            String courseName=resultSet.getString("course_name");
+            String meetingDay = resultSet.getString("meeting_day");
+            LocalTime startTime = LocalTime.parse(resultSet.getString("start_time"));
+            LocalTime endTime = LocalTime.parse(resultSet.getString("end_time"));
+
+            studentSchedule.add(new Course(courseName,new CourseSchedule(startTime, endTime, meetingDay))); 
+
+         
+        }
+       } catch (Exception e) {
+           
+        e.printStackTrace();
+
+       }
+          return studentSchedule;
+          
+    }
          
      
 }

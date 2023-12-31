@@ -76,4 +76,8 @@ public class CourseService {
     public void deleteOldFeedback(){
         new CourseData().deleteOldFeedback();
     }
+    
+    public List getStudentSchedule(String studentName){
+       return courseData.getStudentCourseSchedule(studentName);
+    }
 }

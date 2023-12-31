@@ -4,19 +4,60 @@
  */
 package presentation;
 
+import entety.Course;
 import entety.Student;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.Timer;
+import service.CourseService;
+import service.ScheduleTableModel;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.table.TableCellRenderer;
 
-public class Home extends javax.swing.JFrame {
+public class CourseCalendar extends javax.swing.JFrame {
+
+    public static class MultiLineCellRenderer extends JTextArea implements TableCellRenderer {
+
+        MultiLineCellRenderer() {
+            setLineWrap(true);
+            setWrapStyleWord(true);
+            setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 14));
+            setForeground(new Color(153, 102, 255));
+            setAlignmentX(CENTER_ALIGNMENT);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            setText(value == null ? "" : value.toString());
+
+            // Let the JTextArea determine its preferred size based on the content
+            setSize(table.getColumnModel().getColumn(column).getWidth(), Short.MAX_VALUE);
+
+            return this;
+        }
+    }
 
     Student user;
+    CourseService courseService;
 
-    public Home(Student user) {
+    public CourseCalendar(Student user) {
         this.user = user;
         initComponents();
         txtUsername.setText(user.getUsername());
+        courseService = new CourseService();
+        showCalendar();
+        setLocationRelativeTo(null);
+        setVisible(true);
+
+    }
+
+    public CourseCalendar() {
+        initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -41,8 +82,9 @@ public class Home extends javax.swing.JFrame {
         myCourses = new javax.swing.JButton();
         courseCalendar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        scheduleTable = new rojeru_san.complementos.RSTableMetro();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -180,24 +222,53 @@ public class Home extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/e-learning.jpg"))); // NOI18N
-
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Book Antiqua", 3, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 0, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Welcome to your Course Manager...");
+
+        scheduleTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, "", null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "", "Monday", "Tuesaday", "WednesDay", "Thursday", "Friday"
+            }
+        ));
+        scheduleTable.setColorBackgoundHead(new java.awt.Color(153, 102, 255));
+        scheduleTable.setColorFilasBackgound2(new java.awt.Color(255, 255, 255));
+        scheduleTable.setColorFilasForeground1(new java.awt.Color(0, 0, 51));
+        scheduleTable.setColorFilasForeground2(new java.awt.Color(0, 0, 51));
+        scheduleTable.setColorSelBackgound(new java.awt.Color(204, 204, 255));
+        scheduleTable.setColumnSelectionAllowed(true);
+        scheduleTable.setDoubleBuffered(true);
+        scheduleTable.setDragEnabled(true);
+        scheduleTable.setFillsViewportHeight(true);
+        scheduleTable.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        scheduleTable.setFuenteFilas(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        scheduleTable.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        scheduleTable.setInheritsPopupMenu(true);
+        scheduleTable.setRowHeight(60);
+        jScrollPane1.setViewportView(scheduleTable);
+        scheduleTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (scheduleTable.getColumnModel().getColumnCount() > 0) {
+            scheduleTable.getColumnModel().getColumn(0).setPreferredWidth(20);
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(146, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 827, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(127, 127, 127))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(294, 294, 294)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1036, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -205,10 +276,10 @@ public class Home extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 1100, 710));
@@ -228,7 +299,8 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_browseCoursesActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-
+        Home homepage = new Home(user);
+        disposeCurrentFrame();
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void topCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topCoursesActionPerformed
@@ -242,10 +314,21 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_myCoursesActionPerformed
 
     private void courseCalendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseCalendarActionPerformed
-        // TODO add your handling code here:   
-        CourseCalendar schedulePage = new CourseCalendar(user);
-        disposeCurrentFrame();
+        // TODO add your handling code here:
     }//GEN-LAST:event_courseCalendarActionPerformed
+    public void showCalendar() {
+        scheduleTable.setModel(new ScheduleTableModel());
+        int columnCount = scheduleTable.getColumnCount();
+
+        for (int i = 1; i < columnCount; i++) {
+            scheduleTable.getColumnModel().getColumn(i).setCellRenderer(new MultiLineCellRenderer());
+        }
+
+        List<Course> data = courseService.getStudentSchedule(user.getUsername());
+        for (Course course : data) {
+            ((ScheduleTableModel) scheduleTable.getModel()).addCourse(course.getName(), course.getMeetingDay(), course.getStartTime());
+        }
+    }
 
     //the only purpose of this method is to improve user experinence
     public void disposeCurrentFrame() {
@@ -261,9 +344,6 @@ public class Home extends javax.swing.JFrame {
         timer.start();
     }
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Exit;
@@ -271,12 +351,13 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton courseCalendar;
     private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton myCourses;
+    private rojeru_san.complementos.RSTableMetro scheduleTable;
     private javax.swing.JButton topCourses;
     private javax.swing.JLabel txtUsername;
     // End of variables declaration//GEN-END:variables

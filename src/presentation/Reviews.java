@@ -107,7 +107,15 @@ public class Reviews extends javax.swing.JFrame {
             new String [] {
                 "Student", "Rating", "Date"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblReviews.setAlignmentY(1.0F);
         tblReviews.setColorBackgoundHead(new java.awt.Color(51, 0, 153));
         tblReviews.setColorFilasBackgound2(new java.awt.Color(204, 204, 255));
@@ -325,31 +333,33 @@ public class Reviews extends javax.swing.JFrame {
         studentName = model.getValueAt(row, 0).toString();
         reviewsPanel.setVisible(true);
         showFeedback(studentName);
-        
+
     }//GEN-LAST:event_tblReviewsMouseClicked
 
     private void browseCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCoursesActionPerformed
-        BrowseCourses allCoursesPage=new BrowseCourses(user);
+        BrowseCourses allCoursesPage = new BrowseCourses(user);
         disposeCurrentFrame();
 
     }//GEN-LAST:event_browseCoursesActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-         Home homepage=new Home(user);
+        Home homepage = new Home(user);
+        disposeCurrentFrame();
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void topCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topCoursesActionPerformed
-        TopCourses topCoursesPage=new TopCourses(user);
+        TopCourses topCoursesPage = new TopCourses(user);
         disposeCurrentFrame();
     }//GEN-LAST:event_topCoursesActionPerformed
 
     private void myCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCoursesActionPerformed
-        MyCourses myCoursesPage=new MyCourses(user);
+        MyCourses myCoursesPage = new MyCourses(user);
         disposeCurrentFrame();
     }//GEN-LAST:event_myCoursesActionPerformed
 
     private void courseCalendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseCalendarActionPerformed
-        // TODO add your handling code here:
+        CourseCalendar schedulePage = new CourseCalendar(user);
+        disposeCurrentFrame();
     }//GEN-LAST:event_courseCalendarActionPerformed
 
     public void showAllReviews() {
@@ -361,7 +371,7 @@ public class Reviews extends javax.swing.JFrame {
             Object[] row = {review.getStudentName(), review.getRating(), review.getDate()};
             model.addRow(row);
         }
-        txtRating.setText("Rating: "+ courseService.getRating(courseName));
+        txtRating.setText("Rating: " + courseService.getRating(courseName));
     }
 
     public void showFeedback(String studentName) {
@@ -374,17 +384,19 @@ public class Reviews extends javax.swing.JFrame {
 
         }
     }
+
     //the only purpose of this method is to improve user experinence
-    public void disposeCurrentFrame(){
-         Timer timer = new Timer(500, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            // Dispose the current frame  after the delay
-            dispose();}
-    });
-    // Start the timer
-    timer.setRepeats(false);
-    timer.start();
+    public void disposeCurrentFrame() {
+        Timer timer = new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Dispose the current frame  after the delay
+                dispose();
+            }
+        });
+        // Start the timer
+        timer.setRepeats(false);
+        timer.start();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

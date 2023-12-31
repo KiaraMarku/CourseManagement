@@ -11,7 +11,6 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-
 import service.CourseService;
 import service.StudentService;
 
@@ -34,18 +33,6 @@ public class TopCourses extends javax.swing.JFrame {
         courseDetailsPanel.setVisible(false);
     }
 
-    //for testing purposes
-    public TopCourses() {
-
-        courseService = new CourseService();
-
-        initComponents();
-        setLocationRelativeTo(null);
-        setVisible(true);
-        showTopCourses();
-        courseDetailsPanel.setVisible(false);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,11 +42,9 @@ public class TopCourses extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        Exit = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCourse = new rojeru_san.complementos.RSTableMetro();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         courseDetailsPanel = new javax.swing.JPanel();
         txtLecturer = new javax.swing.JLabel();
@@ -72,6 +57,10 @@ public class TopCourses extends javax.swing.JFrame {
         jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        Exit = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         browseCourses = new javax.swing.JButton();
         homeButton = new javax.swing.JButton();
@@ -84,35 +73,46 @@ public class TopCourses extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(51, 0, 153));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book-stack.png"))); // NOI18N
-        jLabel1.setText(" Course Manager");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 320, 70));
+        tblCourse.setBackground(new java.awt.Color(255, 255, 255));
+        tblCourse.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        Exit.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        Exit.setForeground(new java.awt.Color(255, 255, 255));
-        Exit.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        Exit.setText("X");
-        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ExitMouseClicked(evt);
+            },
+            new String [] {
+                "Top Courses", "Rating"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 0, 30, 40));
-
-        txtUsername.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
-        txtUsername.setForeground(new java.awt.Color(255, 255, 255));
-        txtUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        txtUsername.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user (3).png"))); // NOI18N
-        jPanel1.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 20, 140, 60));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 90));
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        tblCourse.setAlignmentY(1.0F);
+        tblCourse.setColorBackgoundHead(new java.awt.Color(0, 153, 153));
+        tblCourse.setColorFilasBackgound2(new java.awt.Color(204, 255, 255));
+        tblCourse.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tblCourse.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tblCourse.setColorSelBackgound(new java.awt.Color(0, 102, 102));
+        tblCourse.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        tblCourse.setRowHeight(40);
+        tblCourse.setShowGrid(false);
+        tblCourse.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCourseMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCourse);
+        if (tblCourse.getColumnModel().getColumnCount() > 0) {
+            tblCourse.getColumnModel().getColumn(0).setResizable(false);
+            tblCourse.getColumnModel().getColumn(0).setPreferredWidth(250);
+            tblCourse.getColumnModel().getColumn(1).setResizable(false);
+            tblCourse.getColumnModel().getColumn(1).setPreferredWidth(10);
+        }
 
         courseDetailsPanel.setBackground(new java.awt.Color(255, 255, 255));
         courseDetailsPanel.setBorder(javax.swing.BorderFactory.createMatteBorder(40, 1, 1, 1, new java.awt.Color(204, 153, 255)));
@@ -264,9 +264,14 @@ public class TopCourses extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(57, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)))
                 .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -276,7 +281,9 @@ public class TopCourses extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -285,9 +292,39 @@ public class TopCourses extends javax.swing.JFrame {
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 1060, 710));
 
+        jPanel1.setBackground(new java.awt.Color(51, 0, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Bookman Old Style", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/book-stack.png"))); // NOI18N
+        jLabel1.setText(" Course Manager");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 320, 70));
+
+        Exit.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
+        Exit.setForeground(new java.awt.Color(255, 255, 255));
+        Exit.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Exit.setText("X");
+        Exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ExitMouseClicked(evt);
+            }
+        });
+        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 0, 30, 40));
+
+        txtUsername.setFont(new java.awt.Font("Bookman Old Style", 0, 14)); // NOI18N
+        txtUsername.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        txtUsername.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user (3).png"))); // NOI18N
+        jPanel1.add(txtUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 20, 140, 60));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 90));
+
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setForeground(new java.awt.Color(0, 0, 0));
 
+        browseCourses.setBackground(new java.awt.Color(255, 255, 255));
         browseCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         browseCourses.setForeground(new java.awt.Color(51, 0, 153));
         browseCourses.setText("Browse Courses");
@@ -299,6 +336,7 @@ public class TopCourses extends javax.swing.JFrame {
             }
         });
 
+        homeButton.setBackground(new java.awt.Color(255, 255, 255));
         homeButton.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         homeButton.setForeground(new java.awt.Color(51, 0, 153));
         homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/home (1).png"))); // NOI18N
@@ -311,6 +349,7 @@ public class TopCourses extends javax.swing.JFrame {
             }
         });
 
+        topCourses.setBackground(new java.awt.Color(255, 255, 255));
         topCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         topCourses.setForeground(new java.awt.Color(51, 0, 153));
         topCourses.setText("Top Courses");
@@ -322,6 +361,7 @@ public class TopCourses extends javax.swing.JFrame {
             }
         });
 
+        myCourses.setBackground(new java.awt.Color(255, 255, 255));
         myCourses.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         myCourses.setForeground(new java.awt.Color(51, 0, 153));
         myCourses.setText("My Courses");
@@ -333,6 +373,7 @@ public class TopCourses extends javax.swing.JFrame {
             }
         });
 
+        courseCalendar.setBackground(new java.awt.Color(255, 255, 255));
         courseCalendar.setFont(new java.awt.Font("Bookman Old Style", 1, 18)); // NOI18N
         courseCalendar.setForeground(new java.awt.Color(51, 0, 153));
         courseCalendar.setText(" Courses Calendar");
@@ -380,37 +421,9 @@ public class TopCourses extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 220, 720));
 
-        setSize(new java.awt.Dimension(1275, 750));
+        setSize(new java.awt.Dimension(1280, 750));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_ExitMouseClicked
-
-    private void browseCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCoursesActionPerformed
-        BrowseCourses allCoursesPage=new BrowseCourses(user);
-        disposeCurrentFrame();
-
-    }//GEN-LAST:event_browseCoursesActionPerformed
-
-    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-         Home homepage=new Home(user);
-    }//GEN-LAST:event_homeButtonActionPerformed
-
-    private void topCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topCoursesActionPerformed
-        TopCourses topCoursesPage=new TopCourses(user);
-        disposeCurrentFrame();
-    }//GEN-LAST:event_topCoursesActionPerformed
-
-    private void myCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCoursesActionPerformed
-        MyCourses myCoursesPage=new MyCourses(user);
-        disposeCurrentFrame();
-    }//GEN-LAST:event_myCoursesActionPerformed
-
-    private void courseCalendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseCalendarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_courseCalendarActionPerformed
 
     private void btnJoinDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJoinDropActionPerformed
         if (studentService.followsCourses(user, courseName)) {
@@ -423,7 +436,7 @@ public class TopCourses extends javax.swing.JFrame {
 
     private void viewFeedbacsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFeedbacsButtonActionPerformed
         Reviews feedbackpage = new Reviews(user, courseName);
-        this.setVisible(false);
+        disposeCurrentFrame();
     }//GEN-LAST:event_viewFeedbacsButtonActionPerformed
 
     private void tblCourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCourseMouseClicked
@@ -435,12 +448,41 @@ public class TopCourses extends javax.swing.JFrame {
         courseDetailsPanel.setVisible(true);
     }//GEN-LAST:event_tblCourseMouseClicked
 
+    private void ExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExitMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_ExitMouseClicked
+
+    private void browseCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_browseCoursesActionPerformed
+        BrowseCourses allCoursesPage = new BrowseCourses(user);
+        disposeCurrentFrame();
+    }//GEN-LAST:event_browseCoursesActionPerformed
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        Home homepage = new Home(user);
+        disposeCurrentFrame();
+    }//GEN-LAST:event_homeButtonActionPerformed
+
+    private void topCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_topCoursesActionPerformed
+        TopCourses topCoursesPage = new TopCourses(user);
+        disposeCurrentFrame();
+    }//GEN-LAST:event_topCoursesActionPerformed
+
+    private void myCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_myCoursesActionPerformed
+        MyCourses myCoursesPage = new MyCourses(user);
+        disposeCurrentFrame();
+    }//GEN-LAST:event_myCoursesActionPerformed
+
+    private void courseCalendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseCalendarActionPerformed
+        CourseCalendar schedulePage = new CourseCalendar(user);
+        disposeCurrentFrame();
+    }//GEN-LAST:event_courseCalendarActionPerformed
+
     public void showTopCourses() {
         Course[] topCourses = courseService.getTopCourses();
         DefaultTableModel model = (DefaultTableModel) tblCourse.getModel();
 
         for (Course course : topCourses) {
-            Object[] row = {course.getName(),course.getRating()};
+            Object[] row = {course.getName(), course.getRating()};
 
             model.addRow(row);
         }
@@ -469,27 +511,21 @@ public class TopCourses extends javax.swing.JFrame {
         };
 
     }
+
     //the only purpose of this method is to improve user experinence
-    public void disposeCurrentFrame(){
-         Timer timer = new Timer(500, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            // Dispose the current frame  after the delay
-            dispose();}
-    });
-    // Start the timer
-    timer.setRepeats(false);
-    timer.start();
-    }
-
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TopCourses().setVisible(true);
+    public void disposeCurrentFrame() {
+        Timer timer = new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Dispose the current frame  after the delay
+                dispose();
             }
         });
+        // Start the timer
+        timer.setRepeats(false);
+        timer.start();
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Exit;
@@ -506,7 +542,9 @@ public class TopCourses extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton myCourses;
+    private rojeru_san.complementos.RSTableMetro tblCourse;
     private javax.swing.JButton topCourses;
     private javax.swing.JLabel txtCourseName;
     private javax.swing.JLabel txtLecturer;
