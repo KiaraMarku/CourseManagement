@@ -93,7 +93,7 @@ public class Register extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(153, 102, 255));
+        jPanel3.setBackground(new java.awt.Color(51, 0, 153));
         jPanel3.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel6.setFont(new java.awt.Font("Calisto MT", 1, 20)); // NOI18N
