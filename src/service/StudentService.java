@@ -6,6 +6,8 @@ package service;
 
 import repository.StudentData;
 import entety.Student;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 import repository.CourseData;
 
@@ -20,7 +22,7 @@ public class StudentService {
     
   
   public void register(String name,String major,String password){
-      
+       password=hash(password);
       studentData.addStudent(name, major, password);
   }
   
@@ -67,6 +69,7 @@ public class StudentService {
     }
      
      public Student validateStudent(String name,String password){
+                password=hash(password);
              Student student=studentData.validateStudent(name, password);
                 if(student!=null){
                      JOptionPane.showMessageDialog(null, "Welcome " +name); 
@@ -106,5 +109,31 @@ public class StudentService {
        public String getFeedback(Student student,String courseName){
            return studentData.getFeedback(student, courseName);
        }
+       
+       public static String hash (String password) {
+        try {
+         MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+
+         messageDigest.update(password.getBytes());
+
+         byte[] resultByteArray = messageDigest.digest();
+
+         StringBuilder sb = new StringBuilder();
+
+         for (byte b : resultByteArray) {
+          sb.append(String.format("%02x", b));
+         }
+
+         return sb.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+         e.printStackTrace();
+        }
+
+        return "";
+       }
+ 
+       
+        
 
 }
