@@ -5,7 +5,6 @@
 package entety;
 
 import java.time.LocalTime;
-import java.util.List;
 
 public class Course implements Comparable{
 
@@ -67,7 +66,15 @@ public class Course implements Comparable{
     @Override
     public int compareTo(Object o) {
       Course  course=(Course)o;
-      return (int)(this.rating-course.rating);
+      if(this.rating-course.rating<0)
+          return -1;
+      else if (this.rating-course.rating>0)
+          return 1;
+      return 0;
+    }
+
+    public Object getCourseSchedule() {
+       return  schedule;
     }
 
 }

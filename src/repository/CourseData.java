@@ -25,7 +25,7 @@ public class CourseData {
     
   public List<Course> getAllCourses(){
     List<Course> courses=new ArrayList<Course> ();
-          try {
+          try {        
            Connection con=JDBConnection.getConnection();
             PreparedStatement pst = con.prepareStatement(
            "select * from course ");
@@ -192,7 +192,7 @@ public class CourseData {
              ResultSet resultSet = pst.executeQuery();
           
                if (resultSet.next()) {
-                     averageRating = resultSet.getInt(1);
+                     averageRating = resultSet.getDouble(1);
                    }
                
        } catch (Exception e) {
@@ -294,7 +294,5 @@ public class CourseData {
        }
           return studentSchedule;
           
-    }
-         
-     
+    }   
 }

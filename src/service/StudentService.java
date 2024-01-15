@@ -17,10 +17,19 @@ import repository.CourseData;
  */
 public class StudentService {
     
-    StudentData studentData=new StudentData();
-    CourseData courseData=new CourseData();
+    StudentData studentData;
+    CourseData courseData;
+
+    public StudentService() {
+    studentData=new StudentData();
+    courseData=new CourseData();
+    }
     
-  
+     public StudentService(StudentData s,CourseData c) {
+    studentData=s;
+    courseData=c;
+    }
+     
   public void register(String name,String major,String password){
        password=hash(password);
       studentData.addStudent(name, major, password);
@@ -133,7 +142,4 @@ public class StudentService {
         return "";
        }
  
-       
-        
-
 }

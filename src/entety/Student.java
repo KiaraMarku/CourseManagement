@@ -60,5 +60,7 @@ public class Student {
         this.major = major;
     }
     
-    
+    public List getCourses(){
+    return courses;
+    }
 }

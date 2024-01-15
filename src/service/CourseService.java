@@ -9,8 +9,15 @@ import java.util.List;
 import repository.CourseData;
 
 public class CourseService {
+     CourseData courseData;
+     
+    public CourseService(){
+     courseData = new CourseData();
+    }
 
-    CourseData courseData = new CourseData();
+    public CourseService(CourseData courseDataMock) {
+       courseData = courseDataMock;
+    }
 
     public List getAllCourses() {
         return courseData.getAllCourses();
@@ -51,7 +58,7 @@ public class CourseService {
     
     public double getRating(String courseName){
         updateRating(courseName);
-        return courseData.getRating(courseName);
+        return courseData.calculateRatingAverage(courseName);
     }
     
     public void updateRating(String courseName){
